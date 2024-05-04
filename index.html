@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contoh Halaman Web dengan Vue.js</title>
+  <!-- Mengimpor Vue.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <style>
+    /* Gaya untuk kelas CSS */
+  
+    h3 {
+      font-weight: bold;
+      color: palevioletred;
+      text-align: center; /* Posisikan teks di tengah */
+      position: fixed; /* Mengatur posisi menjadi tetap (fixed) */
+      top: 220px; /* Jarak dari bagian atas sejauh 20px */
+      left: 50%; /* Pusatkan elemen di tengah horizontal */
+      transform: translateX(-50%); /* Geser elemen ke kiri sejauh 50% dari lebar sendiri */
+      z-index: 9999; /* Indeks z untuk memastikan elemen di atas konten lainnya */
+      width: 100%; /* Lebar elemen 100% agar tetap di tengah */
+      }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('1.jpg'); /* Ganti '1.jpg' dengan path yang benar */
+      color: white;
+    }
+
+    #app {
+      text-align: center;
+    }
+
+    .bindings {
+      font-weight: bold;
+      
+    }
+    .style-bindings {
+      background-color: palevioletred;
+    }
+
+    input {
+      display: block; /* Membuat input menjadi elemen blok */
+      margin: 10px auto; /* Memberikan margin otomatis ke kanan dan kiri, membuatnya menjadi pusat */
+      width: 200px; /* Lebar input, disesuaikan dengan preferensi Anda */
+    }
+
+    /* Gaya untuk tombol */
+    button {
+      display: block; /* Membuat tombol menjadi elemen blok */
+      margin: 20px auto; /* Memberikan margin otomatis ke kanan dan kiri, membuatnya menjadi pusat */
+      padding: 10px 20px; /* Padding tombol */
+      cursor: pointer; /* Mengubah kursor saat diarahkan ke tombol */
+    }
+    footer {
+    background-color: gray;
+    color: white;
+    text-align: center;
+    padding: 1px 0; /* Mengatur padding atas dan bawah 20px, samping 0 */
+    position: fixed; /* Ubah posisi ke fixed agar tetap di bagian bawah layar */
+    bottom: 0; /* Posisikan ke bagian bawah */
+    width: 100%; /* Lebar 100% untuk mengisi lebar layar */
+    }
+
+  </style>
+</head>
+<body>
+  <h3>Nurul Hayana Putri - 223510821</h3>
+  <div id="app">
+    <!-- Binding dan Style Binding -->
+    <p :class="['bindings', { 'style-bindings': isHighlighted }]">Ini adalah contoh halaman web dengan Vue.js</p>
+
+    <!-- Input teks -->
+    <input type="text" v-model="inputText" @input="updateText">
+
+    <!-- Instruksi dinamis -->
+    <p v-if="inputText">Anda mengetik: {{ inputText }}</p>
+    <p v-else>Silakan mulai mengetik sesuatu...</p>
+
+    <!-- Menampilkan inputText di dalam elemen dengan kelas 'bindings' -->
+    <p class="bindings">{{ inputText }}</p>
+
+    <!-- Tombol untuk mengubah nilai isHighlighted -->
+    <button @click="toggleHighlight">Toggle Highlight</button>
+  </div>
+    <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Nurul Hayana Putri</p>
+  </footer>
+</div>
+
+  <script>
+    // Menginisialisasi Vue.js
+    new Vue({
+      el: '#app',
+      data: {
+        inputText: '', // Nilai dari input teks
+        isHighlighted: false // Apakah teks terhighlight atau tidak
+      },
+      methods: {
+        // Metode untuk mengupdate nilai isHighlighted saat input berubah
+        updateText() {
+          this.isHighlighted = this.inputText.length > 10; // Jika panjang teks lebih dari 10, maka terhighlight
+        },
+        // Metode untuk mengubah nilai isHighlighted saat tombol diklik
+        toggleHighlight() {
+          this.isHighlighted = !this.isHighlighted; // Toggle nilai isHighlighted
+        }
+      }
+      
+    });
+  </script>
+</body>
+</html>
